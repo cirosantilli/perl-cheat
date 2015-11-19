@@ -8,7 +8,7 @@ use warnings;
 no warnings 'redefine';
 no warnings;
 
-##variables
+## variables
 
     my $i = 1;
     (my $i2 = 1, my $i3);
@@ -17,11 +17,12 @@ no warnings;
     #my $i = 1;
     my $s = 'string';
     my @s = (1,3,'string');
-    my @i; #works but is bad practice
+    # Works but is bad practice.
+    my @i;
 
-##scope
+## scope
 
-    ##my
+    ## my
 
         # Confines variable to current block.
 
@@ -39,7 +40,7 @@ no warnings;
             { $i = 1; }
             $i == 1 || exit 1;
 
-    ##local
+    ## local
 
         # Creates a new scope valid for current function and functions that the function calls.
 
@@ -49,20 +50,20 @@ no warnings;
             #f1() == 1 || exit 1;
             #$x == 0 || exit 1;
 
-##stdout
+## stdout
 
-    ##print
+    ## print
 
             print "print\n";
             print "a", 1, "\n";
 
-    ##say
+    ## say
 
         # Automatically adds newlines.
 
             say 'say';
 
-##booleans
+## booleans
 
         !0 == 1     or die;
         !1 == 0     or die;
@@ -76,16 +77,16 @@ no warnings;
         1 || 1  or die;
         1 || 0  or die;
 
-##arithmetic
+## arithmetic
 
-    ##eq
+    ## eq
 
         # TODO vs ==
 
         #==    != <    <= >  >=
         #eq    ne lt    le gt ge
 
-##Strings
+## Strings
 
     ## Single quote vs double quote literals
 
@@ -124,26 +125,26 @@ no warnings;
         "1" + 1 == 2 or die;
         2 . 2 == "22" or die;
 
-    ##chomp
+    ## chomp
 
         $s = "a\n\rb\n\r\r";
         chomp $s;
         $s == "a\n\r" or die;
 
-    ##join
+    ## join
 
         join(',', (1, 2)) == '1,2' or die;
 
-    ##repeat
+    ## repeat
 
-    ##x operator
+    ## x operator
 
         # Yes, the letter `x` is an operator in Perl...
         # http://stackoverflow.com/questions/277485/how-can-i-repeat-a-string-in-perl
 
         ('ab' x 3) eq 'ababab' or die;
 
-##Array
+## Array
 
         my @a = (0, 'a', 1);
         #array = ();
@@ -181,10 +182,7 @@ no warnings;
         #shift @a;
         #unshift @a, 0;
 
-    # Scalar context magic:
-
-
-##list
+## list
 
         (1, 2, 'asdf', (1,2) );
 
@@ -192,9 +190,9 @@ no warnings;
 
         (0 .. 2) == (0, 1) or die;
 
-    # TODO vs list: <http://stackoverflow.com/questions/6023821/perl-array-vs-list>
+    # TODO vs list: http://stackoverflow.com/questions/6023821/perl-array-vs-list
 
-##hash map
+## hash map
 
     my %hash = ('key1', 'value1', 'key2', 'value2');
     #my %hash = (key1 => 'value1', key2 => 'value2'); #same
@@ -202,15 +200,15 @@ no warnings;
     print $hash{key1};
     print keys %hash;
     print values %hash;
-##context
+## context
 
     #operators such as = are overloaded depending if the act on variables ($), lists (@) or hashmaps (%)
 
-##branch
+## branch
 
-    ##if
+    ## if
 
-        ##single line
+        ## single line
 
             #same as `&&`
 
@@ -223,18 +221,18 @@ no warnings;
                 1 and print 'a';
                 0 and print 'b';
 
-            ##concatenate
+            ## concatenate
 
-                #ERROR:
+                # ERROR:
 
                     #print 'a' if 1 if 1;
 
-                #both conditions must be true
+                # Both conditions must be true
 
                     1 && 1 && print 'a';
                     1 and 1 and print 'a';
 
-            ##can only use single command
+            ## can only use single command
 
             #no `;` accepted
 
@@ -243,7 +241,7 @@ no warnings;
                 0 && print 'a'; print 'b';
                     #b
 
-        ##multiline
+        ## Multiline
 
             if (1) {
                     print 'Hello';
@@ -255,7 +253,7 @@ no warnings;
                     print 'Neither';
             }
 
-    ##unless
+    ## unless
 
         #`unless`, `&&` and `and` are exact same as
         #`if`, `||` and `or` but negated.
@@ -271,32 +269,33 @@ no warnings;
         0 || 0 || print 'a';
         0 or 0 or print 'a';
 
-    ##for
+    ## for
 
-        ##single line
+        ## single line
 
             print for (1 .. 10);
 
-    ##foreach
+    ## foreach
 
-        #example:
+        # Example:
+
             foreach my $e (1 .. 3) {
-                    print $e;
+                print $e;
             }
 
-        #default argument:
+        # Default argument:
 
             foreach (1..3) {
-                    print;
+                print;
             }
 
-        #single line:
+        # Single line:
 
             print foreach (1 .. 3);
 
-        #Like if, only single command (no `;` allowed)
+        # Like if, this form only takes a single command (no `;` allowed)
 
-        #uses references:
+        # Uses references:
 
             my @a = (1 .. 5);
             foreach (@a) {
@@ -304,9 +303,9 @@ no warnings;
             }
             $a[0] == 2 || exit 1;
 
-    ##while
+    ## while
 
-        #example:
+        # Example:
 
             $i = 10;
             while ($i > 0) {
@@ -314,7 +313,7 @@ no warnings;
                 $i = $i - 1;
             }
 
-        ##last = break
+        ## last = break
 
             $i = 0;
             while ($i < 100) {
@@ -323,13 +322,13 @@ no warnings;
                 $i = $i + 1;
             }
 
-        ##single line
+        ## Single line
 
             $count = 0;
             print $count, " " while ++$count <= 10;
             print "\n";
 
-##regexp
+## regexp
 
     # Perl regexps were highly influential on regexes of other languages.
 
@@ -372,7 +371,7 @@ no warnings;
 
     # `e` says that the replace will be an arbitrary Perl rexpression.
 
-    ##s/ operator
+    ## s/ operator
 
         # Substitution:
 
@@ -387,11 +386,11 @@ no warnings;
 
 #Defalut variables
 
-    ##sources
+    ## sources
 
     #<http://www.kichwa.com/quik_ref/spec_variables.html>
 
-    ##$_
+    ## $_
 
         # Default arg to functions:
 
@@ -401,183 +400,184 @@ no warnings;
 
         # Gets modified by functions:
 
-    ##$.
+    ## $.
 
-        # Line numeber of last handle read
+        # Line numeber of last handle read.
 
-    ##input record reparator
+    ## input record reparator
 
         # Char at which perl stops reading from handle
 
             $/ = ':';
             print $/;
 
-    ##output record reparator
+    ## output record reparator
 
         # What goes after print
 
-            $\ = "a"; #output record separator for print
+            $\ = 'a'; #output record separator for print
 
             print '';
                 #a
 
-    ##$,
+    ## $,
 
-        #output field separator for print when printing lists
+        # Output field separator for print when printing lists:
 
-            $, = ", ";
+            $, = ', ';
             print 1..3;
 
         # Output:
 
             #1, 2, 3
 
-    ##$#
+    ## $#
 
-        #output format for numbers in print
+        # Output format for numbers in print.
 
-    ##$$
+    ## $$
 
-        #cur process number
+        # Current process number
 
             print $$;
 
-    ##$0
+    ## $0
 
         #name of file of script being executed
 
             print $0;
 
-    ##Command line arguments
+    ## Command line arguments
 
         # TODO
 
             #say $ARGV[0];
 
-    ##Regex related special variables
+    ## Regex related special variables
 
-        #- $1..$9 #nth capturing group of last regex match
+        # - $1..$9 #nth capturing group of last regex match
+        # - $& #entire last regex match
+        # - $`
+        # - $'
+        # - $+
 
-        #- $& #entire last regex match
-
-        #- $`
-
-        #- $'
-
-        #- $+
-
-    ##Environment
+    ## Environment
 
             say "ENV";
             foreach my $key (keys %ENV) {
                 say "  $key = $ENV{$key}";
             }
 
-##functions ##sub
+## functions ## sub
 
     # Called subprocess;
 
         sub f {
             my($a, $b) = @_;
             $a + $b;
+            # Return value is value of last evaluated expression.
+            # No explicit `return` required.
+            # If is also possible to use an explicit `return` command
+            # to exit in the middle of a function.
             #return $a+$b
-                # Return value is value of last evaluated expression.
-                # No explicit `return` required.
-                # If is also possible to use an explicit `return` command
-                # to exit in the middle of a function.
         }
 
-    #It is possible to ommit parenthesis to make the call:
+    # It is possible to ommit parenthesis to make the call:
 
         f(1, 2) == 3 or die;
         f 1, 2 == 3 or die;
 
-    #This is specially useful on interactive sessions.
+    # This is specially useful on interactive sessions.
 
-##file io
+## file io
 
-    ##file handles
+    ## file handles
 
-        #readonly:
+        # readonly:
 
             #open(FH,"<path/to/file.txt")           or die "Opening: $!";
             #while(<FH>){print}
             #close(FH)                              or die "Closing: $!";
 
-        #writeonly:
+        # writeonly:
 
             #open(FH,">path/to/file.txt")           or die "Opening: $!";
             #print FH a, "\n"
             #print FH b, "\n"
             #close(FH)                              or die "Closing: $!";
 
-        ##default
+        ## default
 
-            #STDOUT:
+            # STDOUT:
 
                 say STDOUT "stdout";
 
-            #STDERR:
+            # STDERR:
 
                 say STDERR "stderr";
 
-            #STDIN:
+            # STDIN:
 
-    ##readline
+    ## readline
 
-        #read from handle up to next line terminator char
+        # Read from handle up to next line terminator char.
 
-        #all the same:
+        # All the same:
 
             #$_ = readline(STDIN)
             #$_ = readline
             #$_ = <STDIN>
             #$_ = <>
 
-    ##diamond
+    ## diamond
 
-        #Read from filehandle linewise.
+        # Read from filehandle linewise.
 
-        #If no filehandle given:
+        # If no filehandle given:
 
-        #- if ARGV not empty, treat $ARGV[i] as files and read from them
+        # - if ARGV not empty, treat $ARGV[i] as files and read from them
+        # - else, read from STDIN filehandle.
 
-        #- else, read from STDIN filehandle.
-
-        #As usual, if no pipe is comming in, wait for user input.
+        # As usual, if no pipe is comming in, wait for user input.
 
         #@ARGV = ("file1.txt", "file2.txt");
         #while(<>) {
                 #print;
         #}
 
-        #perl -ne 'YOUR CODE HERE'
+        # perl -ne 'YOUR CODE HERE'
 
             #while (<>) {
-                ##YOUR CODE HERE
+                ## YOUR CODE HERE
             #}
 
-        #perl -pe 'YOUR CODE HERE'
+        # perl -pe 'YOUR CODE HERE'
 
             #while (<>) {
-                ##YOUR CODE HERE
+                ## YOUR CODE HERE
                 #print;
             #}
 
-        #skip a line:
+        ## continue
 
-            #while (<>) {
-                #/a/ && continue;
-            #}
+            # Go to next iteration of loop.
 
-    ##get all lines from file to an array of lines:
+                #while (<>) {
+                    #/a/ && continue;
+                #}
+
+        ## next
+
+            # Vs continue: http://stackoverflow.com/questions/12081818/perl-difference-between-next-and-continue
+
+    ## get all lines from file to an array of lines:
 
         #open(FH,"<a.txt")           or die "Opening: $!";
         #my @ARRAY = <FH>;
-            ##works beause of context
+            ## works beause of context
         #close(FH)                   or die "Closing: $!";
 
-    ##modify file inline
+    ## modify file inline
 
         #open(FH, "+< FILE")                 or die "Opening: $!";
         #@ARRAY = <FH>;
@@ -588,25 +588,25 @@ no warnings;
         #print FH @ARRAY                     or die "Printing: $!";
         #truncate(FH,tell(FH))               or die "Truncating: $!";
 
-##exit
+## exit
 
-    #Terminates the program.
+    # Terminates the program.
 
-    #Does not necessary reflect on the exit status of the perl executable.
-    #Must use `POSIX::_exit($status)` for that.
+    # Does not necessary reflect on the exit status of the perl executable.
+    # Must use `POSIX::_exit($status)` for that.
 
-##process call
+## process call
 
-    ##System
+    ## System
 
         # Runs on background,
         # so you cannot get stdout nor return status:
 
             system('echo', 'system');
 
-    ##``
+    ## ``
 
-    ##Backticks
+    ## Backticks
 
         # Returns the STDOUT. STDERR goes to terminal.
 
@@ -618,7 +618,7 @@ no warnings;
             my $s = 'a';
             `printf $s` == 'a' or die;
 
-    ##qx
+    ## qx
 
         # Same as backticks, but more flexible surrounding character.
 
@@ -629,7 +629,7 @@ no warnings;
             $a = qx(echo -n a b);
             $a = `echo -n a b`;
 
-    ##$?
+    ## $?
 
         # Status of last process closed.
 

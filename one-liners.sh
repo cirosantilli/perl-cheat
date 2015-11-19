@@ -40,9 +40,7 @@
 
 		# Newlines are affected.
 
-		#-i: inline
-
-		#saves old file to F.bak, original is changed:
+		# Save old file to F.bak, original is changed:
 
 			printf 'a\nb\n' > f
 			assert [ "`perl -lpi.bak -e 's/a/A/g' f`" ]
